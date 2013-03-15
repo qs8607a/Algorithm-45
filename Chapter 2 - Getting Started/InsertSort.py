@@ -22,28 +22,3 @@ def insertSort(arr):
 
     return arr;
 
-
-def testInsertSort(arr):
-    """
-    testcase for insertSort.
-    """
-    insertSortRes = arr;
-    insertSortRes = insertSort(insertSortRes);
-    print(insertSortRes);
-    sortRes = arr;
-    sortRes.sort();
-    print(sortRes);
-
-if __name__ == "__main__":
-    arr = [1,7,6,5,3,0,8,90];
-    print(arr);
-    testInsertSort(arr);
-
-    arr = [1];
-    print(arr);
-    testInsertSort(arr);
-
-    arr = [];
-    print(arr);
-    testInsertSort(arr);
-

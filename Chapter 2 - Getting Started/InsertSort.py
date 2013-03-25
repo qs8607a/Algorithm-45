@@ -5,20 +5,14 @@ def insertSort(arr):
     """
     insertSort function sort all elements (numbers) in arr inscreasly.
     """
-    assert isinstance(arr, list);
-
-    if len(arr) <= 1:
-        return arr;
-
-    for j in range(1,len(arr)-1):
-        key = arr[j];
+    for i in range(1, len(arr)):
+        key = arr[i];
 
         # Insert arr[j] into the sorted seqence arr[0, ..., j-1]
-        i = j - 1;
-        while i >= 0 and arr[i] > key:
-            arr[i+1] = arr[i];
-            i = i - 1;
-            arr[i+1] = key;
+        j = i - 1;
+        while j >= 0 and arr[j] > key:
+            arr[j+1] = arr[j];
+            arr[j] = key;
+            j = j - 1;
 
-    return arr;
 

@@ -1,42 +1,30 @@
 # Introduction to Algorithm - Chapter 2: Getting Started
 # MERGE_SORT
 
-import sys
-import math
-
-def merge(arr, p, q, r):
-    """
-    merge two arry into one with a perticular order
-    """
-    if p < 0 or  p > q or q >= r:
-        print "parameter not valid";
-        return;
-
-    leftArr = arr[p:q+1];
-    leftArr.append(sys.maxint);
-    if r == len(arr) - 1:
-        rightArr = arr[q+1:];
-    else:
-        rightArr = arr[q+1:r+1];
-    rightArr.append(sys.maxint);
-
+def merge(left, right):
+    res = [];
     i = 0;
     j = 0;
-    for k in range(p, r+1):
-        if leftArr[i] <= rightArr[j]:
-            arr[k] = leftArr[i];
-            i += 1;
+    while i < len(left) and j < len(right):
+        if left[i] <= right[j]:
+            res.append(left[i]);
+            i = i + 1;
         else:
-            arr[k] = rightArr[j];
-            j += 1;
+            res.append(right[j]);
+            j = j + 1;
+    res += left[i:];
+    res += right[j:];
+    return res;
 
-def mergeSort(arr, p, r):
+def mergeSort(arr):
     """
     sort array using a merge sort algorithm
     """
-    if p < r:
-        q = int(math.floor((p+r)/2));
-        mergeSort(arr, p, q);
-        mergeSort(arr, q+1, r);
-        merge(arr, p, q, r);
+    if len(arr) <= 1:
+        return;
+
+    middle = int(len(arr)/2);
+    left = mergeSort(arr[:middle]);
+    right = mergeSort(arr[middle:]);
+    merge(left, right);
 
